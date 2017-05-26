@@ -1,0 +1,43 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background-color: white;
+}
+
+main{
+	margin: 0 auto;
+	white-space: pre-line;
+}
+
+img{
+	outline: 1px black solid;
+	width: 150px;
+	overflow: clip;
+}
+
+div{
+
+	display: inline-block;
+	vertical-align: top;
+	
+}
+section{
+	margin:0px;
+	vertical-align: top;
+}
+
+footer{
+	text-align: center;
+}
+p{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	text-transform: uppercase;
+	color: gray;
+	padding: 15px;
+	font-weight: none;
+	font-size:  200%;
+	letter-spacing: .5em;
+}

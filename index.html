@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<title>Dietro~Le~Apparenze</title>
+	<meta name="" content="">
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" href="icon.png">
+	<script type="text/javascript" 
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script type="text/javascript">
+
+		var npanels = 8;
+		var ncol = 4;
+		function getImg(name, num){
+			
+			row = Math.floor(num/ncol);
+			col = num % ncol;
+			if(name=="color"){
+				firstPart = "./color/giorgia";
+			}else{
+				firstPart = "./bw/giorgia-bw";
+			}
+			imgPath = firstPart + " [www.imagesplitter.net]-"+row+"-"+col+".png"
+			return(imgPath);
+		};
+		$(document).ready(function(){
+
+			var secnum = 0;
+			for(var i=0; i<npanels; i++){
+				if(i % ncol == 0){
+					$('main').append('<section></section>')
+					secnum++;
+				}
+				imgPath = getImg("bw", i);
+				$('main section:nth-child('+secnum+')').append('<div><img src="'+imgPath+'" num='+i+'></div>');
+				
+			}
+			
+
+			var imgWidth = parseInt($('img').css('width'), 10);
+			var imgMarg =  parseInt($('img').css('margin-left'), 10);
+			$('main').css('width', (imgWidth+imgMarg*2)*ncol);
+			$('section').css('width', (imgWidth+imgMarg*2)*ncol);
+
+			$('div').css('width', imgWidth);
+			$('img').first().on('load', function(){
+				var imgHeight = parseInt($('img').css('height'), 10);
+				$('div').css('height', imgHeight);
+				$('section').css('height', imgHeight);
+				//$('img').css('height', imgHeight);
+			});
+
+			$('img').hover(
+				function(){
+					freeze = $(this);
+					freeze.stop();
+					console.log('#',freeze.attr('num'));
+					
+					num = freeze.attr('num');
+					newSrc = getImg("color", num);
+					
+					freeze.fadeTo(200, .2, function(){
+						freeze.attr('src', newSrc);
+					});
+					freeze.fadeTo(600,1);
+					
+				},
+				function(){
+					//$(this).stop(); //stops the fadeOut animation if still running..?
+					freeze= $(this);
+					//freeze.stop();
+					num = freeze.attr('num');
+					newSrc = getImg("bw", num);
+					freeze.attr("src",newSrc);
+					
+					//$(this).fadeOut(100).attr("src", newSrc).fadeIn(100);
+				}
+			);
+
+		});
+
+		function restore(){
+			//console.log('restoring');
+			$('img:hidden').fadeIn();// hack to catch image that missed the mouseleave event if the user was scrolling too fast
+		}
+		//setInterval(restore, 100);
+	</script>
+</head>
+<body>
+
+<main>
+</main>
+<footer>
+	<p>Dietro Le Apparenze</p>
+
+</footer>
+</body>
+</body>
+</html>
