@@ -6,8 +6,9 @@
 	<link rel="stylesheet" href="style.css">
 	<link rel="icon" href="icon.png">
 	<script type="text/javascript" 
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+		src="../jquery.min.js">
 	</script>
+	<!--"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"-->
 	<script type="text/javascript">
 
 		var npanels = 8;
@@ -51,6 +52,8 @@
 				//$('img').css('height', imgHeight);
 			});
 
+			$('p').fadeTo(800,1);
+
 			$('img').hover(
 				function(){
 					freeze = $(this);
@@ -92,7 +95,7 @@
 <main>
 </main>
 <footer>
-	<p>Dietro Le Apparenze</p>
+	<p style="opacity: 0">Dietro Le Apparenze</p>
 
 </footer>
 </body>
